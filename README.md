@@ -34,3 +34,8 @@ This will create the StickerPack asset for you if it is not set up yet and then 
 ## As well as add sticker images.
 
 ![alt tag](https://raw.githubusercontent.com/agens-no/iMessageStickerUnity/master/meta/AddingStickers.png)
+
+## Changed for Mmortall
+
+I've removed Resource folder. Now stickers will not be added into build because there they are hard licked in StackersConfig located in resource folder. Now they not. 
+I also added define to turn off this extension. Use WITHOUT_STICKERS define to turn if off. Thia is related to the Unity Cloud bug which is not yet fixed.  
