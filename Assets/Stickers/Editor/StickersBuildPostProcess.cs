@@ -5,6 +5,9 @@ namespace Agens.Stickers
 {
     public class StickersBuildPostprocessor
     {
+        //unity cloud has bug with building build wisth stickers. So for CloudBuild use this define 
+#if WITHOUT_STICKERS
+#else
         [PostProcessBuild(1)]
         public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
         {
@@ -15,5 +18,6 @@ namespace Agens.Stickers
 
             StickersExport.WriteToProject(pathToBuiltProject);
         }
+#endif
     }
 }

@@ -9,10 +9,10 @@ namespace Agens.Stickers
 {
     public static class StickersExport
     {
-        private const string MenuItemPath = "Window/Stickers/";
+        private const string MenuItemPath = "Tools/Stickers/";
 
         private const string StickerAssetName = "StickerPack";
-        private const string StickerAssetPath = "Assets/Stickers/Resources/"+StickerAssetName+".asset";
+        private const string StickerAssetPath = "Assets/Plugins/Stickers/"+StickerAssetName+".asset";
         private static readonly string ExportPath = Application.dataPath + "/../Temp/Stickers/";
 
         [MenuItem(MenuItemPath + "Configurate    ")]
@@ -23,13 +23,16 @@ namespace Agens.Stickers
             {
                 sticker = ScriptableObject.CreateInstance<StickerPack>();
                 sticker.Title = PlayerSettings.productName + " Stickers";
-                sticker.BundleId = "stickers";
+				sticker.BundleId = "StickerPackExtension";
                 sticker.Signing = new SigningSettings();
                 sticker.Signing.AutomaticSigning = PlayerSettings.iOS.appleEnableAutomaticSigning;
                 sticker.Signing.ProvisioningProfile = PlayerSettings.iOS.iOSManualProvisioningProfileID;
                 var assetPathAndName = AssetDatabase.GenerateUniqueAssetPath (StickerAssetPath);
                 Log("Creating StickerPack asset at " + assetPathAndName);
-                AssetDatabase.CreateAsset(sticker, assetPathAndName);
+				if(string.IsNullOrEmpty(assetPathAndName))
+					AssetDatabase.CreateAsset(sticker, StickerAssetPath);
+				else
+                	AssetDatabase.CreateAsset(sticker, assetPathAndName);
             }
 
             Selection.activeObject = sticker;
@@ -88,7 +91,7 @@ namespace Agens.Stickers
                 }
             }
 
-            var pack = Resources.Load<StickerPack>(StickerAssetName);
+			var pack = AssetDatabase.LoadAssetAtPath<StickerPack>(StickerAssetPath);
             AddSticker(pack);
             var name = pack.Title;
 

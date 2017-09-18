@@ -62,7 +62,7 @@ namespace Agens.Stickers
         private static readonly GUIContent PixelSize = new GUIContent("Pixel Size");
         private static readonly GUIContent SizeOnDisk = new GUIContent("Size on disk");
         private static readonly GUIContent AppStoreIcon = new GUIContent("App Store Icon");
-        private static readonly GUIContent AppStoreIconSize = new GUIContent("1024 x 768");
+        private static readonly GUIContent AppStoreIconSize = new GUIContent("1024 x 1024");
         private static readonly GUIContent LoadFromFolder = new GUIContent("Load from Folder");
 
         private readonly Dictionary<Sticker, long> diskSizes = new Dictionary<Sticker, long>();

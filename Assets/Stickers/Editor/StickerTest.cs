@@ -8,11 +8,13 @@ namespace Agens.Stickers
 {
     public class StickerTest
     {
+        private const string StickerAssetName = "StickerPack";
+        private const string StickerAssetPath = "Assets/Plugins/Stickers/" + StickerAssetName + ".asset";
 
         [Test]
         public void Title()
         {
-            var pack = Resources.Load<StickerPack>("StickerPack");
+            var pack = AssetDatabase.LoadAssetAtPath<StickerPack>(StickerAssetPath);
             Assert.IsNotNull(pack, "Sticker Pack object is missing");
 #if UNITY_5_6_OR_NEWER
             Assert.IsNotNull(pack.Title, "Sticker Pack does not have a title");
@@ -24,7 +26,7 @@ namespace Agens.Stickers
         [Test]
         public void Stickers()
         {
-            var pack = Resources.Load<StickerPack>("StickerPack");
+            var pack = AssetDatabase.LoadAssetAtPath<StickerPack>(StickerAssetPath);
 
             for (int index = 0; index < pack.Stickers.Count; index++)
             {
